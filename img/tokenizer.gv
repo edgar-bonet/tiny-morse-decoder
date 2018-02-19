@@ -1,0 +1,11 @@
+digraph "Tokenizer" {
+    interword      -> short          [label="FALL"];
+    short          -> long           [label="t ≥  2 u"];
+    short          -> interelement   [label="RISE / DOT"];
+    long           -> interelement   [label="RISE / DASH"];
+    interelement   -> intercharacter [label="t ≥ 2 u / END_OF_CHAR"];
+    interelement   -> short          [label="FALL"];
+    intercharacter -> interword      [label=" t ≥ 3 u / END_OF_WORD"];
+    intercharacter -> short          [label="FALL"];
+    short, long [style=filled, fillcolor=lightgrey];
+}

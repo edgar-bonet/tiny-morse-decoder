@@ -1,0 +1,7 @@
+digraph "Debouncer" {
+    up       -> down     [label="LOW / FALL"];
+    down     -> bouncing [label="HIGH"];
+    bouncing -> down     [label="LOW"];
+    bouncing -> up       [label="t ≥ 10 ms / RISE"];
+    down, bouncing [style=filled, fillcolor=lightgrey];
+}
