@@ -59,12 +59,17 @@ Below is the schematic of the suggested circuit:
 
 ![](img/schematic.svg)
 
-The “logic-level serial monitor” can be anything that is able to process
-a logic-level asynchronous serial signal. It should be configured to
-9600/8N1, i.e. 9600&nbsp;baud, 8&nbsp;data bits, no parity, one stop
-bit. Typically one would use a USB to TTL serial cable connected to a
-computer running a serial terminal emulator, like [putty][] or [GNU
-screen][]. On a Linux terminal, one can simply type something like
+The circuit can be easily breadboarded. If, however, you want something
+more durable, check this [kit sold by Tom Boyd][kit], which is based on
+a professionally built PCB.
+
+The “logic-level serial monitor” mentioned above can be anything that is
+able to process a logic-level asynchronous serial signal. It should be
+configured to 9600/8N1, i.e. 9600&nbsp;baud, 8&nbsp;data bits, no
+parity, one stop bit. Typically one would use a USB to TTL serial cable
+connected to a computer running a serial terminal emulator, like
+[putty][] or [GNU screen][]. On a Linux terminal, one can simply type
+something like
 
 ```text
 stty -F /dev/ttyUSB0 raw 9600 && cat /dev/ttyUSB0
@@ -77,6 +82,7 @@ TX pin. When doing this, it is important that the Arduino sketch does
 not initialize its serial port. The Arduino serial monitor can then be
 used as an alternative to the serial terminal emulator.
 
+[kit]: http://sheepdogguides.com/elec/pcb/PCB271-ATtiny%20Morse%20brd1.htm
 [putty]: https://www.chiark.greenend.org.uk/~sgtatham/putty/
 [GNU screen]: https://www.gnu.org/software/screen/
 
