@@ -69,13 +69,14 @@ static __flash const uint16_t morse_code[CODE_LENGTH] = {
 
 This Arduino program performs a functional test on tiny-morse-decoder.
 It should be loaded on an Arduino which is then connected to both a
-computer and the ATtiny13A running tiny-morse-decoder.c:
+computer and the microcontroller (ATtiny13A/25/45/85) running
+tiny-morse-decoder.c:
 
-computer ↔ Arduino ↔ ATtiny13A
+computer ↔ Arduino ↔ ATtiny
 
 The Arduino is connected to the computer through USB. It sends
 diagnostic information on the serial port at 9600/8N1. The connection to
-the ATtiny13A is as follows:
+the ATtiny is as follows:
 
 | Arduino | ATtiny |
 |:-------:|:------:|
@@ -114,7 +115,7 @@ ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789.,?'!/()&:;=+-_"$@
 Note that the Arduino peripherals are used in a somewhat unconventional
 way:
 
-* The serial port is used for two independent links: ATtiny13A → Arduino
+* The serial port is used for two independent links: ATtiny → Arduino
   (reception) and Arduino → computer (emission).
 * As pin 13 is not used by the program, the on-board LED is driven
   directly by the ATtiny.

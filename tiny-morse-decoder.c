@@ -1,5 +1,5 @@
 /*
- * tiny-morse-decoder.c: Morse decoder for ATtint13A.
+ * tiny-morse-decoder.c: Morse decoder for ATtiny13A/25/45/85.
  *
  * Connect:
  *  - a voltage source (2.7 to 5.5 V) between Vcc and GND
@@ -47,8 +47,22 @@
 /* Baud rate of the serial data output. */
 #define BAUD_RATE 9600
 
+/* Compatibility with ATtiny25/45/85. */
+#if __AVR_ATtiny25__ || __AVR_ATtiny45__ || __AVR_ATtiny85__
+#  define F_CPU 8000000  // internal clock with prescaler = 1
+#  define TIMSK0 TIMSK
+#  define TIFR0 TIFR
+#  undef  TIM0_COMPA_vect
+#  define TIM0_COMPA_vect TIMER0_COMPA_vect
+#  undef  TIM0_COMPB_vect
+#  define TIM0_COMPB_vect TIMER0_COMPB_vect
+#elif __AVR_ATtiny13A__
+#  define F_CPU 9600000  // internal clock with prescaler = 1
+#else
+#  error "Unsupported MCU."
+#endif
+
 /* Timing calculations. */
-#define F_CPU 9600000  // internal clock with prescaler = 1
 #define TIMER_TOP ((int)((float)F_CPU/8/BAUD_RATE+0.5) - 1)
 #define TIC_FREQ ((float)F_CPU/8/(TIMER_TOP+1))           // in Hz
 #define DOT_TIME(rate) ((uint16_t)(1.2/(rate)*TIC_FREQ))  // in tics

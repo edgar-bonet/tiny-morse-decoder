@@ -1,11 +1,11 @@
 /*
  * Automated test for tiny-morse-decoder.
  *
- * Connect to the ATtiny13A and see the diagnostic information sent to
+ * Connect to the ATtiny and see the diagnostic information sent to
  * the serial monitor at 9600/8N1.
  *
  * Connections:
- *   Arduino  ATtiny13A
+ *   Arduino  ATtiny
  *     GND --- GND
  *      5V --- Vcc                  ┌──┬┬──┐
  *       8 --- PB0     11 ─── RESET ┤1 └┘ 8├ Vcc ─── 5V
@@ -22,7 +22,7 @@
 
 #include "raw-morse-code.h"
 
-/* Pins connected to the ATtiny13A. */
+/* Pins connected to the ATtiny. */
 const uint8_t SPEED_SELECT_PINS[2] = {8, 9};
 const uint8_t KEY_PIN = 10;
 const uint8_t RESET_PIN = 11;
@@ -31,7 +31,7 @@ const uint8_t RESET_PIN = 11;
 const uint8_t KEY_RATES[4] = {5, 8, 12, 18};
 
 /*
- * The ATtiny13A is controlled in an "open drain" mode, by grounding and
+ * The ATtiny is controlled in an "open drain" mode, by grounding and
  * floating its inputs. This open drain control can be achieved on the
  * Arduino through pinMode():
  *  - OUTPUT sets the pin to LOW by default, effectively grounding it

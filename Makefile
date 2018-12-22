@@ -7,10 +7,20 @@
 # The USBasp does not require the -P and -b options.
 PROGRAMMER = -c usbasp
 
+# The MCU target can be overridden on the command line, e.g.
+#   make MCU=attiny85
 MCU    = attiny13a
+
 CFLAGS = -mmcu=$(MCU) -std=gnu11 -fshort-enums -Os -Wall -Wextra -g
 TARGET = tiny-morse-decoder.elf
-AVRDUDE_OPTS = -p attiny13 $(PROGRAMMER)
+
+# Avrdude expects the ATtiny13A to be called "attiny13".
+ifeq "$(MCU)" "attiny13a"
+    AVRDUDE_MCU = attiny13
+else
+    AVRDUDE_MCU = $(MCU)
+endif
+AVRDUDE_OPTS = -p $(AVRDUDE_MCU) $(PROGRAMMER)
 
 all: $(TARGET)
 

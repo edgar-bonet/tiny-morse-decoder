@@ -6,8 +6,9 @@ key][], into a stream of ASCII characters delivered as a logic-level
 for ATtiny experts][challenge] by Tom Boyd, but I slightly bent the
 rules of the challenge:
 
-1. This program targets the [ATtiny13A][] microcontroller, whereas the
-   challenge requires the (way too powerful) ATtiny85.
+1. Whereas the challenge requires the somewhat overpowered ATtiny85
+   microcontroller, this program targets the much smaller [ATtiny13A][],
+   although it does also work on the attinies 25, 45 and 85.
 2. It's written in plain C and compiled with gcc, instead of going
    through the Arduino IDE.
 
@@ -91,19 +92,30 @@ used as an alternative to the serial terminal emulator.
 You need GNU make, avr-gcc, avrdude and an ISP programmer. An Arduino
 [can be used as an ISP programmer][arduino-isp].
 
-To compile, just type
+To compile, type
+
+```text
+make MCU=<mcu name>
+```
+
+where `<mcu_name>` should be either `attiny13a`, `attiny25`, `attiny45`
+or `attiny85`. Simply typing
 
 ```text
 make
 ```
 
+compiles for the default target, which is the ATtiny13A.
+
 To upload, edit the Makefile, set the `PROGRAMMER` variable to match
-your programmer, connect the programmer to the ATtiny13A and to the
-computer, then type
+your programmer, connect the programmer to the microcontroller and to
+the computer, then type
 
 ```text
-make upload
+make MCU=<mcu_name> upload
 ```
+
+If uploading to an ATtiny13A, you can omit `MCU=attiny13a`.
 
 Alternatively, gcc and avrdude can be called directly as:
 
