@@ -128,6 +128,12 @@ avrdude -p attiny13 -c usbasp -U tiny-morse-decoder.elf
 But make sure to replace `-c usbasp` by the avrdude options appropriate
 for your programmer.
 
+Another alternative is to open the dummy file tiny-morse-decoder.ino
+with the Arduino IDE. For this, you will need a board support package
+matching the microcontroller you are using, in order to be able to
+select it in the “Board” menu. The code provided by the board support
+package will not be used.
+
 [arduino-isp]: https://www.arduino.cc/en/Tutorial/ArduinoISP
 
 ## Files
